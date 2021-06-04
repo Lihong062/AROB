@@ -1,0 +1,5 @@
+setmapping2 YUYV 320 240 45.0 JeVois ArUcoBlob # to select this module upon power up
+setpar serout USB     # to send detection messages to 4-pin serial port
+setpar serstyle Normal # to get ID, center location, size
+setpar serstamp Frame  # to add video frame number to all messages
+streamon               # start capturing and processing camera sensor data

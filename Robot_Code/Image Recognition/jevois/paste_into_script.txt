@@ -1,0 +1,45 @@
+# Optional script to run each time the module is loaded,
+# AFTER it is started.
+#
+# Commands in this file should be exactly as you would type
+# interactively into the JeVois command-line interface.
+#
+# Example:
+#
+# setcam brightness 1
+# setpar cpumax 1200
+# info
+
+# Set camera to fixed color balance, gain, and exposure, so that we get more reliable colors than we would obtain under
+# automatic mode:
+setcam autowb 0
+setcam autogain 0
+setcam autoexp 0
+setcam redbal 110
+setcam bluebal 170
+setcam gain 16
+setcam absexp 500
+setcam presetwb 3
+
+# Number of parallel threads has to be configured before the module is initialized. See params.cfg for this module.
+
+# Hue values: 0=red/do not use because of wraparound, 30=yellow, 45=light green, 60=green, 75=green cyan, 90=cyan,
+#             105=light blue, 120=blue, 135=purple, 150=pink
+# Saturation values: from 0 (grey) to 255 (saturated color)
+# Value (brightness) values: from 0 (dark) to 255 (bright)
+
+# Detect orange objects for blob0:
+setpar blob0:hrange 4...12
+setpar blob0:srange 160...255
+setpar blob0:vrange 100...255
+
+setpar blob0:maxnumobj 8
+setpar blob0:objectarea 20...100000
+
+
+# Send info log messages to None, send serial strings from module to USB-over-serial port:
+setpar serlog None
+setpar serout USB
+setpar serstyle Normal # to get ID, center location, size
+setpar serstamp Frame # to add video frame number to all messages
+
